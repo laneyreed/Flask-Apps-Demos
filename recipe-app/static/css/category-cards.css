@@ -1,0 +1,39 @@
+/*recipe_category_cards.html*/
+.category-card-header {
+  background-color: #BDABDC;
+  border-bottom: .1rem solid #4A2781;
+  
+}
+
+.category-card {
+  border: .1rem solid #4A2781;
+}
+
+.recipe-category-card-title a{
+  text-decoration: none;
+  color: #4A2781;
+  /* font-size: 3rem; */
+}
+
+.category-card-image{
+   background-color: #4A2781;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.category-card-image p{
+  color: #4A2781;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: #BDABDC;
+  opacity: 0.8;
+  /* margin: 1rem; */
+}
+
+.category-card-footer a{
+  text-decoration: none;
+  color: #4A2781;
+  font-weight: bold;
+
+}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block recipes_type_h1 %}
+<h1>{{recipe[1]}}</h1>
+{% endblock  %}
+
+{% block intro_paragraph %}
+            <p>
+                {{recipe[2]}}
+            </p>
+<div class="container mb-5">
+    <div class="servings-details row mb-5 py-3">
+        <div class="col-sm-12 col-md-6 col-lg-3" style="height: 100%;">
+            <p class="mb-0">
+                Prep Time: {{recipe[3]}} minutes
+            </p>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3" style="height: 100%;">
+            <p class="mb-0">
+                Cook Time: {{recipe[4]}} minutes
+            </p>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3" style="height: 100%;">
+            <p class="mb-0">
+                Total Time: {{recipe[3] + recipe[4]}}  minutes
+            </p>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3" style="height: 100%;">
+            <p class="mb-0">
+                Make:  servings
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-5 col-lg-4 mb-3 d-flex justify-content-center">
+        <div class="details-card card px-0 ">
+            <div class="details-card-header card-header">
+                <h3>Ingredients</h3>
+            </div>
+            <ul class="list-group list-group-flush text-start">
+                {% for ingredient in ingredients %}
+                <li class="list-group-item">{{ ingredient[0] }} {{ ingredient[1] }} {{ ingredient[2] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        </div>
+
+        <div class="col-sm-12 col-md-7 col-lg-8 mb-3 d-flex justify-content-center">
+        <div class="details-card card px-0">
+            <div class="details-card-header card-header">
+                <h3>Instructions</h3>
+            </div>
+            <ol class="list-group list-group-flush  list-group-numbered text-start">
+                <li class="list-group-item">Preheat oven to 350°F (175°C). Grease and flour a 9x9 inch pan or line a muffin pan with paper liners.</li>
+                <li class="list-group-item">In a medium bowl, mix together the sugar, flour, cocoa, baking powder, baking soda, and salt. Add the eggs, milk, oil, and vanilla, mix for 2 minutes on medium speed of mixer. Stir in the boiling water last (batter will be thin). Pour evenly into the prepared pan.</li>
+                <li class="list-group-item">Bake 30 to 35 minutes in the preheated oven, until the cake tests done with a toothpick. Cool in the pan for 10 minutes, then remove to a wire rack to cool completely.</li>
+                <li class="list-group-item">Frost with your favorite frosting and enjoy!</li>   
+            </ol>
+
+                        {#<ol>
+                {% for step in instructions %}
+                <li>{{ step }}</li>
+                {% endfor %}
+            </ol> #}
+        </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
+{% endblock %}

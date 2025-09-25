@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block recipes_type_h1 %}
+<h1>Vegan Recipes</h1>
+{% endblock  %}
+
+{% block intro_paragraph %}
+  <p>
+    Vegan recipes composed entirely of plant-based ingredients and built around a diverse range of foods including fruits,
+    vegetables, grains, legumes, nuts, and seeds. These recipes help you create meals that are rich, satisfying, and innovative, 
+    ranging from grain bowls and stir-fries to burgers and dairy-free desserts. 
+  </p>
+{% endblock %}
+
+ {% block main_section%}
+  <section class="recipe-section container py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom">Recipes</h2>
+        <div class="recipes row">  
+
+          {# Appetizers #}
+          {% set card_image = '../static/images/appetizers.jpg' %}
+          {% set category_route = "appetizers" %}
+          {% set category_text = 'From colorful veggie platters to creative dips and bit-sized snacks, these mades to share savory dishes are perfect for any occasion.' %}
+          {% set category = "Appetizers"%}
+          {% include "./includes/recipe_category_cards.html" %}
+
+          {# Breakfast#}
+          {% set card_image = '../static/images/breakfast.jpg' %}
+          {% set category_route = "breakfast" %}
+          {% set category_text = 'Start your day with a vibrant and nourishing meal featuring a diverse range of flavors and textures, from hearty and savory to light and sweet.' %}
+          {% set category = "Breakfast"%}
+          {% include "./includes/recipe_category_cards.html" %}
+
+          {# Soups#}
+          {% set card_image = '../static/images/soup.jpg' %}
+          {% set category_route = "soups" %}
+          {% set category_text = 'Warm up with a comforting bowl of soup, featuring a variety of ingredients and flavors to nourish your body and soul.' %}
+          {% set category = "Soups"%}
+          {% include "./includes/recipe_category_cards.html" %}
+
+          {# Salads #}
+          {% set card_image = '../static/images/salad.jpg' %}
+          {% set category_route = "salads" %}
+          {% set category_text = 'Fresh and vibrant salads that celebrate the season\'s best produce, featuring a variety of textures and flavors to delight your palate.' %}
+          {% set category = "Salads"%}
+          {% include "./includes/recipe_category_cards.html" %}
+
+          {# Entrees #}
+          {% set card_image = '../static/images/pita-entree.jpg' %}
+          {% set category_route = "entrees" %}
+          {% set category_text = 'Hearty and satisfying main courses that showcase the versatility of plant-based ingredients, from savory stews to flavorful stir-fries.' %}          
+          {% set category = "Entrees"%}
+          {% include "./includes/recipe_category_cards.html" %}
+
+          {# Sides #}
+          {% set card_image = '../static/images/sides.jpg' %}
+          {% set category_route = "sides" %}
+          {% set category_text = 'Delicious and versatile side dishes that complement any meal, from roasted vegetables to grain salads and beyond.' %}
+          {% set category = "Sides"%}
+          {% include "./includes/recipe_category_cards.html" %}
+
+          {# Desserts #}
+          {% set card_image = '../static/images/dessert2.jpg' %}
+          {% set category_route = "desserts" %}
+          {% set category_text = 'Indulgent and satisfying plant-based desserts that showcase the natural sweetness and richness of fruits, nuts, and other wholesome ingredients.' %}
+          {% set category = "Desserts"%}
+          {% include "./includes/recipe_category_cards.html" %}
+
+          {# Beverages #}
+          {% set category_route = "beverages" %}
+          {% set card_image = '../static/images/beverages.jpg' %}
+          {% set category_text = 'Refreshing and flavorful drinks that celebrate the natural goodness of fruits, herbs, and spices, from smoothies and juices to infused waters and teas.' %}
+          {% set category = "Beverages"%}
+          {% include "./includes/recipe_category_cards.html" %}
+        </div>
+  </section>
+  {% endblock %}
