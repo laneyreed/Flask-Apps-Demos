@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - Recipe Search{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <!-- Page Header -->
+        
+        {% if search_term %}
+        <!-- Search Results: Only displays if search_term is present -->
+            <h2>Search Results for: "<span class="text-primary">{{ search_term }}</span>"</h2>
+        {% else %}
+        <!-- Displays if search_term is not present -->
+            <h2>Recipe Search</h2>
+        {% endif %}
+
+        <!-- Search Form: Always Visible -->
+         {% if search_method == 'queryParameters' %}
+        {% include "search-demo/query_parameters_form.html" with context %}
+        {% else %}
+        {% include "search-demo/url_path_form.html" with context %}
+        {% endif %}
+
+
+
+
+        <!-- Error Message: Only displays if error_message is present -->
+        {% if error_message %}
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle"></i> {{ error_message }}
+            </div>
+        {% endif %}
+
+        <!-- IF NO RESULTS FOUND: No Results Message -->
+        {% if no_results and search_term %}
+            <div class="alert alert-info" role="alert">
+                <h5 class="alert-heading">No Results Found</h5>
+                <p>No recipes found for "<strong>{{ search_term }}</strong>".</p>
+                <hr>
+                <p class="mb-0">Try different keywords or check your spelling.</p>
+            </div>
+        {% endif %}
+
+        <!-- Search Results -->
+        {% if results %}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <p class="text-muted">Found {{ results|length }} recipe(s)</p>
+                </div>
+                
+                {% for recipe in results %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ recipe[1] }}</h5>
+                            <p class="card-text flex-grow-1">{{ recipe[2][:100] }}{% if recipe[2]|length > 100 %}...{% endif %}</p>
+                            <div class="mt-auto">
+                                <a href="{{ url_for('get_recipe_details', recipe_id=recipe[0]) }}" class="btn btn-primary btn-sm">
+                                    View Recipe
+                                </a>
+                                <small class="text-muted ms-2">ID: {{ recipe[0] }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Search Tips -->
+        {% if not search_term or (no_results and search_term) %}
+        <div class="mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">Search Tips</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li>Try different keywords or phrases</li>
+                        <li>Search works on both recipe names and descriptions</li>
+                        <li>Use partial words (e.g., "tom" will find "tomato")</li>
+                        <li>Search is case-insensitive</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Back to Home -->
+        <div class="mt-4">
+            <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">
+                ← Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

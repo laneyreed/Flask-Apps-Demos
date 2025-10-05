@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Recipe Search{% endblock title %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="">Search Functionality Demo</h1>
+    <p class="">Search functionality searches a recipe database for matching recipes based on user input.</p>
+</div>
+<div class="row">
+    <div class="col-md-6 mx-auto text-center">
+        <!-- Search Form -->
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title">Search for Recipes using Query Parameters</h5>
+                    <!-- the GET method, appends the form data to the URL as query parameters -->
+                    <!-- action then points to the search_recipes_query function -->
+                    <!-- the querySearchTerm is available in the request.args in the search_recipes_query function -->
+                     <!-- search_method='queryParameters' is to indicate the search method being used, so the correct form displays on the results page -->
+                    <form method="GET" action="{{ url_for('search_recipes_query', search_method='queryParameters') }}">
+                        <div class="input-group mb-3">
+                            <!-- if user tries to search without entering a term, validation is handled by HTML5 required attribute -->
+                            <!-- IF USER ENTERS A EMPTY STRING, LIKE SPACES: it will be handled by the server-side validation -->
+                            <!-- IF USER ENTERS A VALID SEARCH TERM: it will be passed to the return statement in the search_recipes_query function -->
+                            <input type="text" class="form-control" name="querySearchTerm"
+                                placeholder="Enter recipe name or ingredient..." required>
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Quick Test Links -->
+                <div class="mt-4">
+                    <h6>Quick Test Links:</h6>
+                    <div class="row px-5 py-3" justify-content-center>
+                    <form class="col-4" method="GET" action="{{ url_for('search_recipes_query') }}">
+                        <input type="text" class="form-control" name="querySearchTerm"
+                                value="pasta" style="display: none;">
+                        <button class="btn btn-outline-secondary btn-sm" type="submit">Search "pasta"</button>
+                    </form>
+
+                    <form class="col-4" method="GET" action="{{ url_for('search_recipes_query') }}">
+                        <input type="text" class="form-control" name="querySearchTerm"
+                                value="soup" style="display: none;">
+                        <button class="btn btn-outline-secondary btn-sm" type="submit">Search "soup"</button>
+                    </form>
+                    <form class="col-4" method="GET" action="{{ url_for('search_recipes_query') }}">
+                        <input type="text" class="form-control" name="querySearchTerm"
+                                value="vegan" style="display: none;">
+                        <button class="btn btn-outline-secondary btn-sm" type="submit">Search "vegan"</button>
+                    </form>
+                    </div>
+                </div>
+
+                <!-- Usage Instructions -->
+                <div class="mt-5">
+                    <h6>Search Methods</h6>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title">Query Parameter</h6>
+                                    <p class="card-text small">
+                                        <code>/search?querySearchTerm=pasta</code><br>
+                                        Traditional form-based search
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mx-auto text-center">
+        <!-- Search Form -->
+        <div class="card">
+            <div class="card-body">
+                <div>
+                     <h5 class="card-title">Search for Recipes using URL Path</h5>
+                <!-- This form uses URL path method: /recipes/search/<search_term> -->
+                <!-- Since HTML forms can't directly submit to parameterized paths -->
+                <!-- To make the form work with URL paths, JavaScript needs to be used to intercept the form submission and construct the URL dynamically -->
+                <form id="searchForm" onsubmit="return handleSearch(event)">
+                    <div class="input-group mb-3">
+                        <!-- Form uses URL path routing instead of query parameters -->
+                        <!-- JavaScript prevents default submission and redirects to /recipes/search/<search_term> -->
+                        <input type="text" class="form-control" id="searchTerm"
+                            placeholder="Enter recipe name or ingredient..." required>
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+
+                <!-- JavaScript handles the form submission to construct the proper URL path -->
+                <script>
+                    function handleSearch(event) {
+                        event.preventDefault(); // Prevent default form submission
+                        const searchTerm = document.getElementById('searchTerm').value.trim();
+                        if (searchTerm) {
+                            // Redirect to URL path route: /recipes/search/<search_term>
+                            window.location.href = `/recipes/search/${encodeURIComponent(searchTerm)}`;
+                        }
+                        return false;
+                    }
+                </script>
+                </div>
+               
+                <!-- Quick Test Links -->
+                <div class="mt-4">
+                    <h6>Quick Test Links:</h6>
+                    <div class="row px-5 py-3" justify-content-center>
+                        <div class="col-4">
+                            <a href="{{ url_for('search_recipes', search_term='breakfast') }}"
+                                class="btn btn-outline-secondary btn-sm">Search "breakfast"</a>
+                        </div>
+                        <div class="col-4">
+                            <a href="{{ url_for('search_recipes', search_term='salad') }}"
+                                class="btn btn-outline-secondary btn-sm">Search "salad"</a>
+                        </div>
+                        <div class="col-4">
+                            <a href="{{ url_for('search_recipes', search_term='chicken') }}"
+                                class="btn btn-outline-secondary btn-sm">Search "chicken"</a>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- Usage Instructions -->
+        <div class="mt-5">
+            <h6>Available Search Methods:</h6>
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h6 class="card-title">URL Path (Current Form)</h6>
+                            <p class="card-text small">
+                                <code>/recipes/search/salad</code><br>
+                                Direct URL path search
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock content %}

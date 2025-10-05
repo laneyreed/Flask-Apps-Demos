@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Recipe Details - Recipe Search{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">{{ recipe[1] }}</h4>
+                <small class="text-muted">Recipe ID: {{ recipe[0] }}</small>
+            </div>
+            <div class="card-body">
+                <h6>Description:</h6>
+                <p>{{ recipe[2] }}</p>
+                
+                <div class="alert alert-info">
+                    <strong>Note:</strong> This is a minimal version showing only basic recipe info. 
+                    The full version includes ingredients, cooking time, etc.
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="javascript:history.back()" class="btn btn-outline-secondary">← Back to Search</a>
+                <a href="{{ url_for('home') }}" class="btn btn-outline-primary">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

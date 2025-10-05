@@ -1,0 +1,10 @@
+<div class="card mb-4">
+            <div class="card-body">
+                <form method="GET" action="{{ url_for('search_recipes_query') }}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="querySearchTerm" placeholder="Search for recipes..." value="{{ search_term or '' }}" required>
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
