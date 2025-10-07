@@ -72,9 +72,19 @@ def search_recipes(search_term):
                          no_results=False)
 
 # Alternative search route using query parameters (more conventional)
+# why is this more conventional? because it allows for multiple parameters to be passed in the URL
+# and it is more flexible for users to share links with specific search terms
+# using two different routes for search, only to demonstrate both methods
+# and to show how to handle query parameters in Flask
+# just use one in projects, the query parameter method is generally preferred for search functionality
 @app.route("/query_search_results") # Example: http://localhost:5001/query_search_results?querySearchTerm=pasta
 def search_recipes_query():
     # request.args.get retrieves query parameters from the URL, so there is no need to pass anything in the URL path
+        # requests.args.get() method's parameters: (key, default=None, type=None)
+            # key: the name of the parameter to retrieve from the query string
+            # default: the value to return if the parameter is not found (default is None)
+            # type: the type to which the parameter should be converted (default is str)
+
     # the querySearchTerm gets put in the URL by the form
     # the form does this by using the GET method, which appends the form data to the URL as query parameters
     # Get the search term from query parameters

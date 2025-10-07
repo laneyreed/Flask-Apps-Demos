@@ -1,0 +1,11 @@
+.navbar{
+    background: linear-gradient(135deg, rgba(69, 133, 93, 1) 0%, #34495e 100%);
+    color: #FFFFFF
+}
+.navbar a{
+    color: #FFFFFF !important;
+}
+
+code, .search-term-text{
+    color:  rgba(69, 133, 93, 1)
+}
